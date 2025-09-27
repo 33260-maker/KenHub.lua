@@ -1,18 +1,28 @@
 -- ======================
--- 🔑 Key System + KEN HUB V3 Loader
+-- 🔑 Key System + KEN HUB V3 Loader (Multi-Key Support)
 -- ======================
 local Players = game:GetService("Players")
 local StarterGui = game:GetService("StarterGui")
 local GuiService = game:GetService("GuiService")
 local player = Players.LocalPlayer
 
-local VALID_KEY = "bencezshop125481342"
+-- ✅ เก็บคีย์หลายตัว
+local VALID_KEYS = {
+    ["bencezshop125481342"] = true,
+    ["FREE_b3d5bd5bc142a54053db0fde91731914"] = true,
+    ["AEIOP_QPP"] = true
+}
+
 local KEY_LINK = "https://lootdest.org/s?vwrMcYmz"
 local processing = false
 
 local function sendNotif(title, text, dur)
     pcall(function()
-        StarterGui:SetCore("SendNotification", {Title = title, Text = text, Duration = dur or 4})
+        StarterGui:SetCore("SendNotification", {
+            Title = title,
+            Text = text,
+            Duration = dur or 4
+        })
     end)
 end
 
@@ -187,7 +197,7 @@ local function createKeyGui()
     getKeyBtn.Parent = frame
 
     continueBtn.MouseButton1Click:Connect(function()
-        if txtBox.Text == VALID_KEY then
+        if VALID_KEYS[txtBox.Text] then
             msgLabel.Text = "✅ Key ถูกต้อง กำลังโหลด..."
             wait(0.5)
             screenGui:Destroy()
