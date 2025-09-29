@@ -28,23 +28,3 @@ Window:SelectTab(Tab1)
 
 local Section = Tab1:AddSection({"Section"})
 local Paragraph = Tab1:AddParagraph({"Paragraph", "This is a Paragraph\nSecond Line"})
-
-local Dialog = Window:Dialog({
-    Title = "Dialog",
-    Text = "This is a Dialog",
-    Options = {
-      {"Confirm", function()
-        
-      end},
-      {"Maybe", function()
-        
-      end},
-      {"Cancel", function()
-        
-      end}
-    }
-})
-
-Tab1:AddButton({"Print", function(Value)
-    print("Hello World!")
-end})
