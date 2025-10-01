@@ -76,3 +76,18 @@ Tab2:AddButton({
         loadstring(game:HttpGet('https://pastebin.com/raw/3Rnd9rHf'))()
     end
 })
+
+-- ======================
+-- 📢 Notification หลังโหลด KEN HUB
+-- ======================
+local game_name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+game.StarterGui:SetCore(
+    "SendNotification",
+    {
+        Title = "KENHub Loaded!",
+        Text = game_name .. " Script Loaded!",
+        Icon = "rbxassetid://103308551113442",
+        Duration = 5
+    }
+)
