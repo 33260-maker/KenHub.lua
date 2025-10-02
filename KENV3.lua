@@ -61,11 +61,11 @@ Tab2:AddButton({
     end
 })
 
--- ปุ่ม God Mode (ตัวอย่าง)
+-- ปุ่ม God Mode (อัมตะจริง)
 Tab2:AddButton({
-    Name = "🛡️ God Mode",
+    Name = "🛡️ God Mode (Immortal)",
     Callback = function()
-        print("God Mode script here")
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal"))()
     end
 })
 
