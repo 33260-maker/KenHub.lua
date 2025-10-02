@@ -2,23 +2,23 @@
 -- ⚡ KEN HUB V3 (RedzLib UI) ⚡
 -- ======================
 
--- 📂 โหลด RedzLib
+-- 📂 Load RedzLib
 local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
 
--- 🪟 สร้างหน้าต่างหลัก
+-- 🪟 Create main window
 local Window = redzlib:MakeWindow({
     Title = "KEN Hub",
     SubTitle = "by Ken9999",
     SaveFolder = "KEN_HUB_Config"
 })
 
--- 🔽 ปุ่มย่อ/ขยาย (Minimize)
+-- 🔽 Minimize / Expand button
 Window:AddMinimizeButton({
     Button = { Image = "rbxassetid://103308551113442", BackgroundTransparency = 0 },
     Corner = { CornerRadius = UDim.new(0, 15) },
 })
 
--- 📑 Tab หลัก (Main)
+-- 📑 Main Tab
 local Tab1 = Window:MakeTab({
     Name = "Main",
     Icon = "rbxassetid://103308551113442"
@@ -32,17 +32,17 @@ Tab1:AddDiscordInvite({
     Invite = "https://discord.gg/Apn2j9Fez",
 })
 
--- 📑 Tab ฟังก์ชัน (Functions)
+-- 📑 Functions Tab
 local Tab2 = Window:MakeTab({
     Name = "Functions",
     Icon = "rbxassetid://103308551113442"
 })
 
 -- ======================
--- 🚀 ตัวอย่างปุ่มใน RedzLib
+-- 🚀 Function Buttons
 -- ======================
 
--- ปุ่มเพิ่ม Speed
+-- Increase Speed button
 Tab2:AddButton({
     Name = "🏃 Increase Speed",
     Callback = function()
@@ -53,7 +53,7 @@ Tab2:AddButton({
     end
 })
 
--- ปุ่ม Fly
+-- Fly button
 Tab2:AddButton({
     Name = "✈️ Fly",
     Callback = function()
@@ -61,7 +61,7 @@ Tab2:AddButton({
     end
 })
 
--- ปุ่ม God Mode (อัมตะจริง)
+-- God Mode (Immortal) button
 Tab2:AddButton({
     Name = "🛡️ God Mode (Immortal)",
     Callback = function()
@@ -69,7 +69,7 @@ Tab2:AddButton({
     end
 })
 
--- ปุ่ม Invisible
+-- Invisible button
 Tab2:AddButton({
     Name = "👻 Invisible",
     Callback = function()
@@ -77,8 +77,16 @@ Tab2:AddButton({
     end
 })
 
+-- Spawn Clone (Doppelgänger) button
+Tab2:AddButton({
+    Name = "🧍‍♂️ Spawn Clone",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt"))()
+    end
+})
+
 -- ======================
--- 📢 Notification หลังโหลด KEN HUB
+-- 📢 Notification after KEN HUB is loaded
 -- ======================
 local game_name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
