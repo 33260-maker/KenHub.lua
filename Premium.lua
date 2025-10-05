@@ -1,4 +1,4 @@
---[[ควยเอ้ยมาดูโค้ดกูทำไมกูไม่รู้เช่นกันกับพวกมึงยังไง]]--
+--[[ควยเอ้ยมาดูโค้ดกูทำไมกูไม่รู้จะจัดการกับพวกมึงยังไงแล้ว]]--
 -- ======================
 -- ⚡ KEN HUB V3 (RedzLib UI) + Key System ⚡
 -- ======================
@@ -44,6 +44,7 @@ end
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
+-- ===== Key UI =====
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player:WaitForChild("PlayerGui")
 screenGui.Name = "KENHubKeyUI"
@@ -119,6 +120,7 @@ checkKeyBtn.MouseButton1Click:Connect(function()
             Corner = { CornerRadius = UDim.new(0, 15) },
         })
 
+        -- ===== Tab1 =====
         local Tab1 = Window:MakeTab({
             Name = "Main",
             Icon = "rbxassetid://103308551113442"
@@ -131,6 +133,7 @@ checkKeyBtn.MouseButton1Click:Connect(function()
             Invite = "https://discord.gg/Apn2j9Fez",
         })
 
+        -- ===== Tab2 =====
         local Tab2 = Window:MakeTab({
             Name = "Functions",
             Icon = "rbxassetid://103308551113442"
@@ -158,10 +161,9 @@ checkKeyBtn.MouseButton1Click:Connect(function()
         addFunctionButton("👻 Invisible", "https://pastebin.com/raw/3Rnd9rHf")
         addFunctionButton("🧍‍♂️ Spawn Clone", "https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt")
         addFunctionButton("🚪 Noclip (Walk Through Walls)", "https://pastebin.com/raw/u0nS8wq2")
+        addFunctionButton("🕳️ Black Hole", "https://pastebin.com/raw/zgSEcs5E")
 
-        -- ======================
-        -- เพิ่ม Tab3 พร้อม Toggle และ Slider
-        -- ======================
+        -- ===== Tab3 =====
         local Tab3 = Window:MakeTab({
             Name = "Tab3",
             Icon = "rbxassetid://103308551113442"
