@@ -1,10 +1,19 @@
+--[[ควยเอ้ยมาดูโค้ดกูทำไมกูไม่รู้จะจัดการกับพวกมึงยังไงแล้ว]]--
+--ขอ​สงวนลิขสิทธิ์ [KENHub.com]--
 -- ======================
 -- ⚡ KEN HUB V3 (RedzLib UI) + Key System + Translator ⚡
 -- ======================
 
--- 🌐 Translator System (ภาษาไทย)
+-- ====== ตั้งค่า (ถ้าต้องการ ปรับตรงนี้) ======
+local ENABLE_TRANSLATOR = true        -- true = เปิดโหมดแปล (Dual) / false = ปิดแปล (แสดงอังกฤษล้วน)
+local LANGUAGE_MODE = "Dual"          -- "Dual" = อังกฤษบน/ไทยล่าง, "EN" = อังกฤษ, "TH" = ไทย
+
+-- ======================
+-- 🌐 Translator System (อังกฤษบน / ไทยล่าง)
 local Translator = {}
-Translator.Enabled = true
+Translator.Enabled = ENABLE_TRANSLATOR
+Translator.Mode = LANGUAGE_MODE
+
 Translator.Dictionary = {
     ["KEN Hub Key System"] = "ระบบคีย์ KEN Hub",
     ["GET KEY"] = "รับคีย์",
@@ -28,9 +37,25 @@ Translator.Dictionary = {
     ["KENHub Loaded!"] = "โหลด KEN HUB สำเร็จ!",
     ["Script Loaded!"] = "สคริปต์ถูกโหลดแล้ว!"
 }
-function Translator:t(text)
-    if not self.Enabled then return text end
-    return self.Dictionary[text] or text
+
+-- คืนค่าสำหรับแสดงใน UI
+function Translator:t(key)
+    if not self.Enabled then
+        if self.Mode == "TH" then
+            return self.Dictionary[key] or key
+        else
+            return key
+        end
+    end
+
+    local th = self.Dictionary[key]
+    if self.Mode == "Dual" and th then
+        return key .. "\n" .. th
+    elseif self.Mode == "TH" and th then
+        return th
+    else
+        return key
+    end
 end
 
 -- ======================
@@ -52,11 +77,13 @@ local function safeWriteFile(name, content)
     pcall(function() writefile(name, content) end)
 end
 local function notify(msg)
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "KEN Hub",
-        Text = msg,
-        Duration = 5
-    })
+    pcall(function()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "KEN Hub",
+            Text = msg,
+            Duration = 5
+        })
+    end)
 end
 local function tryOpenLinkOrCopy(link)
     pcall(function() if setclipboard then setclipboard(link) end end)
@@ -69,9 +96,11 @@ local function checkKey(input)
     return false
 end
 
-local player = game:GetService("Players").LocalPlayer
+-- ======================
+-- สร้าง GUI Key UI
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 
--- ===== Key UI =====
 local screenGui = Instance.new("ScreenGui")
 screenGui.Parent = player:WaitForChild("PlayerGui")
 screenGui.Name = "KENHubKeyUI"
@@ -124,6 +153,7 @@ getKeyBtn.MouseButton1Click:Connect(function()
     tryOpenLinkOrCopy(GET_KEY_LINK)
 end)
 
+-- เมื่อเช็คคีย์ผ่าน จะเปิดตัว UI หลัก
 checkKeyBtn.MouseButton1Click:Connect(function()
     local key = tostring(inputBox.Text)
     if checkKey(key) then
@@ -132,9 +162,9 @@ checkKeyBtn.MouseButton1Click:Connect(function()
         screenGui:Destroy()
 
         -- ======================
-        -- ⚡ KEN HUB UI ⚡
-        -- ======================
+        -- ⚡ โหลด RedzLib UI และสร้าง KEN HUB
         local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/Library-ui/refs/heads/main/Redzhubui"))()
+
         local Window = redzlib:MakeWindow({
             Title = "KEN Hub",
             SubTitle = "by Ken9999",
@@ -165,29 +195,33 @@ checkKeyBtn.MouseButton1Click:Connect(function()
             Icon = "rbxassetid://103308551113442"
         })
 
-        local function addFunctionButton(name, url, speed)
+        -- ฟังก์ชันช่วยสร้างปุ่ม: รับ key (อังกฤษ) เป็นตัวระบุ และแสดง displayName ที่แปลแล้ว
+        local function addFunctionButton(key, url, speed)
+            local displayName = Translator:t(key)
             Tab2:AddButton({
-                Name = name,
+                Name = displayName,
                 Callback = function()
                     local plr = game.Players.LocalPlayer
-                    if name == Translator:t("Increase Speed") and plr.Character and plr.Character:FindFirstChild("Humanoid") then
+                    -- ใช้ key ตรงนี้สำหรับ logic แทนการเปรียบเทียบกับ display text
+                    if key == "Increase Speed" and plr.Character and plr.Character:FindFirstChild("Humanoid") then
                         plr.Character.Humanoid.WalkSpeed = speed
-                        notify(name .. " = " .. speed)
+                        notify( (Translator.Mode=="Dual" and (key.."\n"..(Translator.Dictionary[key] or "")) ) or Translator:t(key) .. " = " .. tostring(speed) )
                     elseif url then
                         loadstring(game:HttpGet(url))()
-                        notify(name .. " เปิดใช้งานแล้ว!")
+                        notify(Translator:t(key) .. " เปิดใช้งานแล้ว!")
                     end
                 end
             })
         end
 
-        addFunctionButton(Translator:t("Increase Speed"), nil, 50)
-        addFunctionButton(Translator:t("Fly"), "https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111")
-        addFunctionButton(Translator:t("God Mode (Immortal)"), "https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal")
-        addFunctionButton(Translator:t("Invisible"), "https://pastebin.com/raw/3Rnd9rHf")
-        addFunctionButton(Translator:t("Spawn Clone"), "https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt")
-        addFunctionButton(Translator:t("Noclip (Walk Through Walls)"), "https://pastebin.com/raw/u0nS8wq2")
-        addFunctionButton(Translator:t("Black Hole"), "https://pastebin.com/raw/zgSEcs5E")
+        -- สร้างปุ่มโดยส่ง key ดั้งเดิม (อังกฤษ)
+        addFunctionButton("Increase Speed", nil, 50)
+        addFunctionButton("Fly", "https://rawscripts.net/raw/Universal-Script-Gui-Fly-v3-37111")
+        addFunctionButton("God Mode (Immortal)", "https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/God%20Mode%20Script%20Universal")
+        addFunctionButton("Invisible", "https://pastebin.com/raw/3Rnd9rHf")
+        addFunctionButton("Spawn Clone", "https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt")
+        addFunctionButton("Noclip (Walk Through Walls)", "https://pastebin.com/raw/u0nS8wq2")
+        addFunctionButton("Black Hole", "https://pastebin.com/raw/zgSEcs5E")
 
         -- ===== Tab3 =====
         local Tab3 = Window:MakeTab({
@@ -209,13 +243,51 @@ checkKeyBtn.MouseButton1Click:Connect(function()
             end
         })
 
-        local game_name = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-        game.StarterGui:SetCore("SendNotification", {
-            Title = Translator:t("KENHub Loaded!"),
-            Text = game_name .. " " .. Translator:t("Script Loaded!"),
-            Icon = "rbxassetid://103308551113442",
-            Duration = 5
+        -- ===== Settings Tab (เพิ่ม Toggle ควบคุม Translator และโหมดภาษา) =====
+        local SettingsTab = Window:MakeTab({
+            Name = Translator:t("Settings"),
+            Icon = "rbxassetid://103308551113442"
         })
+
+        SettingsTab:AddToggle({
+            Name = Translator:t("Enable Translator"),
+            Default = Translator.Enabled,
+            Callback = function(v)
+                Translator.Enabled = v
+                -- รีเฟรช UI อาจต้องปิดแล้วเปิดใหม่บาง element ตาม RedzLib
+                notify( v and "Translator enabled" or "Translator disabled" )
+            end
+        })
+
+        SettingsTab:AddDropdown({
+            Name = Translator:t("Language Mode"),
+            Default = Translator.Mode,
+            Options = {"Dual","EN","TH"},
+            Callback = function(val)
+                Translator.Mode = val
+                notify("Language mode: "..tostring(val))
+            end
+        })
+
+        -- แจ้งเตือนว่าโหลดเสร็จ
+        local game_name = pcall(function() return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name end)
+        local gname = ""
+        if game_name then
+            -- pcall returned true, but above is not properly stored; just try again safe
+            local ok, nm = pcall(function() return game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name end)
+            if ok then gname = nm else gname = "Game" end
+        else
+            gname = "Game"
+        end
+
+        pcall(function()
+            game.StarterGui:SetCore("SendNotification", {
+                Title = Translator:t("KENHub Loaded!"),
+                Text = gname .. " " .. Translator:t("Script Loaded!"),
+                Icon = "rbxassetid://103308551113442",
+                Duration = 5
+            })
+        end)
     else
         notify(Translator:t("Invalid Key! Press GET KEY to obtain."))
     end
