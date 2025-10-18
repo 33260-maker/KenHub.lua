@@ -15,12 +15,12 @@ Translator.Enabled = ENABLE_TRANSLATOR
 Translator.Mode = LANGUAGE_MODE
 
 Translator.Dictionary = {
-    ["KEN Hub Key System"] = "ระบบคีย์ KEN Hub",
-    ["GET KEY"] = "รับคีย์",
-    ["CHECK KEY"] = "ตรวจสอบคีย์",
-    ["Enter Key..."] = "กรอกคีย์...",
-    ["Key Correct! Loading KEN Hub..."] = "คีย์ถูกต้อง! กำลังโหลด KEN Hub...",
-    ["Invalid Key! Press GET KEY to obtain."] = "คีย์ไม่ถูกต้อง! กรุณากดรับคีย์ใหม่",
+    ["KEN Hub Key System"]
+    ["GET KEY"]
+    ["CHECK KEY"] 
+    ["Enter Key..."]
+    ["Key Correct! Loading KEN Hub..."]
+    ["Invalid Key! Press GET KEY to obtain."]
     ["Increase Speed"] = "เพิ่มความเร็ว",
     ["Fly"] = "บิน",
     ["God Mode (Immortal)"] = "โหมดอมตะ",
