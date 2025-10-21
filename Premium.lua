@@ -1,2 +1,2 @@
 script_key = script_key
-loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Beta.lua"))()
+loadstring(game:HttpGet("https://pastebin.com/raw/PfCz33Uc"))()
