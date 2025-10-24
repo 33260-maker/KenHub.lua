@@ -21,6 +21,7 @@ Translator.Dictionary = {
     ["Spawn Clone"] = "สร้างร่างแยก",
     ["Noclip (Walk Through Walls)"] = "ทะลุกำแพง",
     ["Black Hole"] = "หลุมดำ",
+    ["Jumping without limits "] = "กระโดดไม่จำจัด",
     ["Functions"] = "ฟังก์ชัน",
     ["Main"] = "หน้าหลัก",
     ["Tab3"] = "ตั้งค่าเพิ่มเติม",
@@ -215,6 +216,45 @@ checkKeyBtn.MouseButton1Click:Connect(function()
         addFunctionButton("Spawn Clone", "https://raw.githubusercontent.com/0Ben1/fe/main/obf_11l7Y131YqJjZ31QmV5L8pI23V02b3191sEg26E75472Wl78Vi8870jRv5txZyL1.lua.txt")
         addFunctionButton("Noclip (Walk Through Walls)", "https://pastebin.com/raw/u0nS8wq2")
         addFunctionButton("Black Hole", "https://pastebin.com/raw/zgSEcs5E")
+         addFunctionButton("Jumping without limits", -- 💫 (Jumping without limits )
+    tabFun:AddButton({
+        Name = Translator:t("Jumping without limits"),
+        Callback = function()
+            local plr = game.Players.LocalPlayer
+            local char = plr.Character or plr.CharacterAdded:Wait()
+            local hrp = char:WaitForChild("HumanoidRootPart")
+
+            local airPart = Instance.new("Part")
+            airPart.Size = Vector3.new(10,1,10)
+            airPart.Anchored = true
+            airPart.CanCollide = true
+            airPart.Transparency = 0.5
+            airPart.Material = Enum.Material.Neon
+            airPart.Color = Color3.fromRGB(0,255,255)
+            airPart.Parent = workspace
+
+            local on = true
+            local height = 5
+            notify("กดปุ่ม F เพื่อเปิด/ปิด AirWalk")
+
+            local run = game:GetService("RunService")
+            local input = game:GetService("UserInputService")
+
+            run.RenderStepped:Connect(function()
+                if on and hrp and airPart then
+                    airPart.Position = hrp.Position - Vector3.new(0,height,0)
+                end
+            end)
+
+            input.InputBegan:Connect(function(key,proc)
+                if proc then return end
+                if key.KeyCode == Enum.KeyCode.F then
+                    on = not on
+                    notify(on and "✅ เปิด AirWalk แล้ว" or "❌ ปิด AirWalk แล้ว")
+                end
+            end)
+        end
+    })")   
 
         -- ===== Tab3 =====
         local Tab3 = Window:MakeTab({
