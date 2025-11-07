@@ -62,13 +62,7 @@ loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/b3f"))(
 elseif game.PlaceId == 18668065416 then
 loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/BlueLockRivals"))()
 elseif game.PlaceId == 7326934954 then
-loadstring(game:HttpGet(""))()
-elseif getgenv().V == "Kaitundiamond" then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/99nightFarmDiamond"))()
-elseif getgenv().V == "OldKaitundiamond" then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/99nightFarmDiamondold"))()
-else
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/99night"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KUO_HUB/refs/heads/main/99%20nights%20in%20the%20forest.lua"))()
 end
 else
 loadstri
