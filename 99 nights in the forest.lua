@@ -126,7 +126,7 @@ ToggleAutoTree:Callback(function(state)
 
         -- แสดงแถบเฉพาะเมื่ออยู่ในระยะ
         while AUTO_TREE do
-            task.wait(0.5)
+            task.wait(0.1)
             local char = player.Character or player.CharacterAdded:Wait()
             local root = char:FindFirstChild("HumanoidRootPart")
             if not root then continue end
@@ -136,7 +136,7 @@ ToggleAutoTree:Callback(function(state)
                     local primary = tree:FindFirstChild("PrimaryPart") or tree:FindFirstChildWhichIsA("BasePart")
                     if primary then
                         local dist = (primary.Position - root.Position).Magnitude
-                        tree.HPBar.Enabled = (dist <= 25)
+                        tree.HPBar.Enabled = (dist <= 100)
                     end
                 end
             end
@@ -147,8 +147,8 @@ ToggleAutoTree:Callback(function(state)
     if AUTO_TREE then
         task.spawn(function()
             local TREE_NAME = "Small Tree"
-            local ATTACK_DISTANCE = 25
-            local ATTACK_DELAY = 0.3
+            local ATTACK_DISTANCE = 100
+            local ATTACK_DELAY = 0.1
             local DAMAGE_PER_HIT = 10
 
             local Players = game:GetService("Players")
