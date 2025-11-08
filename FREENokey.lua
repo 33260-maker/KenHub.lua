@@ -54,13 +54,13 @@ end
 
 if allowedPlaceIds[game.PlaceId] then
 if game.PlaceId == 2753915549 then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/b1"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua"))()
 elseif game.PlaceId == 4442272183 then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/b2"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua"))()
 elseif game.PlaceId == 7449423635 then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/b3f"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua"))()
 elseif game.PlaceId == 18668065416 then
-loadstring(game:HttpGet("https://cdn.jsdelivr.net/gh/AAwful/Vector_Hub@0/BlueLockRivals"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua"))()
 elseif game.PlaceId == 7326934954 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/33260-maker/KUO_HUB/refs/heads/main/99%20nights%20in%20the%20forest.lua"))()
 end
