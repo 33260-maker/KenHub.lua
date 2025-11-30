@@ -60,7 +60,7 @@ descThai.BackgroundTransparency = 1
 descThai.Text = [[คุณยังใช้ GitHub อยู่ใช่มั้ย?
 loadstring(game:HttpGet('https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua'))()
 สองวันที่ผ่านมา GitHub ล่มบ่อยมาก ทำให้โหลดไม่ได้แนะนำเลย! เปลี่ยนมาใช้ลิงก์ใหม่ สั้นกว่า จำง่ายกว่า และเสถียรกว่า 100%
-loadstring(game:HttpGet("https://pastefy.app/GAEZLeje/raw"))()]]
+loadstring(game:HttpGet("https://pastefy.app/of4UGeHS/raw"))()]]
 descThai.TextColor3 = Color3.fromRGB(220, 220, 220)
 descThai.Font = Enum.Font.Gotham
 descThai.TextSize = 17
@@ -74,7 +74,7 @@ local descEng = Instance.new("TextLabel")
 descEng.Size = UDim2.new(1, -40, 0, 120)
 descEng.Position = UDim2.new(0, 20, 0, 75)
 descEng.BackgroundTransparency = 1
-descEng.Text = [[Still using GitHub? loadstring(game:HttpGet('https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua'))() GitHub has been down frequently for the past 2 days... causing load failures Recommended! Switch to the new link - shorter, easier to remember, and 100% stable loadstring(game:HttpGet("https://pastefy.app/GAEZLeje/raw"))()]]
+descEng.Text = [[Still using GitHub? loadstring(game:HttpGet('https://raw.githubusercontent.com/33260-maker/KenHub.lua/refs/heads/main/Premium.lua'))() GitHub has been down frequently for the past 2 days... causing load failures Recommended! Switch to the new link - shorter, easier to remember, and 100% stable loadstring(game:HttpGet("https://pastefy.app/of4UGeHS/raw"))()]]
 descEng.TextColor3 = Color3.fromRGB(220, 220, 220)
 descEng.Font = Enum.Font.Gotham
 descEng.TextSize = 16
