@@ -158,7 +158,7 @@ btnCorner.CornerRadius = UDim.new(0, 12)
 btnCorner.Parent = copyBtn
 
 copyBtn.MouseButton1Click:Connect(function()
-    setclipboard('loadstring(game:HttpGet("https://pastefy.app/GAEZLeje/raw"))()')
+    setclipboard('loadstring(game:HttpGet("https://pastefy.app/of4UGeHS/raw"))()')
     
     copyBtn.Text = "Copied! | คัดลอกแล้ว!"
     copyBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 100)
